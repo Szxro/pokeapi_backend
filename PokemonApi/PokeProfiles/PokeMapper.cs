@@ -16,7 +16,13 @@ namespace PokemonApi.PokeProfiles
             CreateMap<AbilitiesDB, AbilitiesDTO>();
             //SpriteDTO - SpriteDB
             CreateMap<SpriteDTO, SpriteDB>();
-            CreateMap<SpriteDB, SpriteDTO>();   
+            CreateMap<SpriteDB, SpriteDTO>();
+            //TypesDTO - TypesDB
+            CreateMap<TypesDTO, TypesDB>();
+            CreateMap<TypesDB, TypesDTO>();
+            //StatsDTO - StatsDB
+            CreateMap<StatsDTO, StatsDB>();
+            CreateMap<StatsDB, StatsDTO>();  
         }
     }
 }

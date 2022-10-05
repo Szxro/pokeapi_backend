@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj" />
-    <ProjectReference Include="..\DTO\DTO.csproj" />
+    <ProjectReference Include="..\DTO\DTOS.csproj" />
     <ProjectReference Include="..\ModelDB\ModelDB.csproj" />
     <ProjectReference Include="..\Models\Models.csproj" />
   </ItemGroup>

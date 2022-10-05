@@ -13,6 +13,7 @@ namespace PokemonApi.Controllers
     public class PokeController : ControllerBase
     {
         private readonly IPokeService _service;
+
         public PokeController(IPokeService service)
         {
             _service = service;
@@ -20,30 +21,29 @@ namespace PokemonApi.Controllers
 
         [HttpGet("search/{name}")]
 
-        public async Task<ActionResult<ServiceResponse<List<Pokemon>>>> getPokemonByName(string name)
+        public ActionResult<ServiceResponse<List<Pokemon>>> getPokemonByName(string name)
         {
-            var res = await _service.getPokemonByName(name);
-            if (res.Data.Count() <= 0)
-                return NotFound(new ServiceResponse<List<Pokemon>>() { Message = "Pokemon Not Found", Success = false });
-            return Ok(res);
+            return Ok(_service.getPokemonByName(name));
         }
 
         [HttpGet("save/{name}")]
 
         public async Task<ActionResult<ServiceResponse<List<PokemonDTO>>>> savePokemon(string name)
         {
-            var res = await _service.savePokemon(name);
-            if (!res.Success)
-                return BadRequest(res);
-            if (res.Data.Count() <= 0)
-                return NotFound(new ServiceResponse<List<PokemonDTO>>() {Message ="Pokemon not Found", Success = false });
-            return Ok(res);
+            return Ok(await _service.savePokemon(name));
         }
 
         [HttpGet("getPokemons")]
         public async Task<ActionResult<ServiceResponse<List<PokemonDTO>>>> getPokemonDB()
         {
             return Ok(await _service.getPokemonDB());
+        }
+
+        [HttpGet("GetAll")]
+
+        public ActionResult<ServiceResponse<List<Pokemon>>> getAllPokemons(int limit = 20, int offset = 0) 
+        {
+            return Ok(_service.getAllPokemon(limit, offset));
         }
     }
 }

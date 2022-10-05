@@ -6,10 +6,12 @@ namespace PokemonApi.Services.PokemonService
 {
     public interface IPokeService
     {
-        Task<ServiceResponse<List<Pokemon>>> getPokemonByName(string name);
+        ServiceResponse<List<Pokemon>> getPokemonByName(string name);
 
         Task<ServiceResponse<List<PokemonDTO>>> savePokemon(string name);
 
         Task<ServiceResponse<List<PokemonDTO>>> getPokemonDB();
+
+        ServiceResponse<List<Pokemon>> getAllPokemon(int limit = 20, int offset = 0);
     }
 }

@@ -13,5 +13,9 @@ namespace ModelDB
         public virtual ICollection<AbilitiesDB> Abilities { get; set; }
 
         public virtual SpriteDB PokeSprite { get; set; }
+
+        public virtual TypesDB Types { get; set; }
+
+        public virtual StatsDB Stats { get; set; }
     }
 }

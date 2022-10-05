@@ -1,7 +1,6 @@
-﻿using Models.PokeAbilities;
+﻿using Models.ObjToString;
+using Models.PokeAbilities;
 using Models.PokeSprite;
-using Models.PokeStats;
-using Models.PokeTypes;
 using System.Text.Json.Serialization;
 
 namespace Models
@@ -20,15 +19,15 @@ namespace Models
         [JsonPropertyName("abilities")]
         public AbilitiesContent[] Abilities { get; set; }
 
-        [JsonPropertyName("types")]
-        public TypeContent[] Types { get; set; }
+        [JsonPropertyName("types"),JsonConverter(typeof(JsonToStringConverter))]
+        public string Types { get; set; }
 
         [JsonPropertyName("sprites")]
         public SpriteContent Sprites { get; set; }
 
-        [JsonPropertyName("stats")]
+        [JsonPropertyName("stats"),JsonConverter(typeof(JsonToStringConverter))]
 
-        public StatsContent[] Stats { get; set; }
+        public string Stats { get; set; }
 
     }
 }

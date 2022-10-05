@@ -12,6 +12,10 @@
 
         public SpriteDTO PokeSprite { get; set; }   
 
+        public TypesDTO Types { get; set; } 
+
+        public StatsDTO Stats { get; set; }
+
         public DateTime CreationTime { get; set; }
     }
 }

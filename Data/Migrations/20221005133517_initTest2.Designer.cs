@@ -4,6 +4,7 @@ using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(PokeContext))]
-    partial class PokeContextModelSnapshot : ModelSnapshot
+    [Migration("20221005133517_initTest2")]
+    partial class initTest2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -102,32 +104,6 @@ namespace Data.Migrations
                     b.ToTable("Sprites");
                 });
 
-            modelBuilder.Entity("ModelDB.StatsDB", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("PokemonId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Stats")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PokemonId")
-                        .IsUnique();
-
-                    b.ToTable("Stats");
-                });
-
             modelBuilder.Entity("ModelDB.TypesDB", b =>
                 {
                     b.Property<int>("Id")
@@ -176,17 +152,6 @@ namespace Data.Migrations
                     b.Navigation("Pokemon");
                 });
 
-            modelBuilder.Entity("ModelDB.StatsDB", b =>
-                {
-                    b.HasOne("ModelDB.PokemonDB", "Pokemon")
-                        .WithOne("Stats")
-                        .HasForeignKey("ModelDB.StatsDB", "PokemonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Pokemon");
-                });
-
             modelBuilder.Entity("ModelDB.TypesDB", b =>
                 {
                     b.HasOne("ModelDB.PokemonDB", "PokemonDB")
@@ -203,9 +168,6 @@ namespace Data.Migrations
                     b.Navigation("Abilities");
 
                     b.Navigation("PokeSprite")
-                        .IsRequired();
-
-                    b.Navigation("Stats")
                         .IsRequired();
 
                     b.Navigation("Types")

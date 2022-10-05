@@ -1,6 +1,9 @@
 using Data;
 using Microsoft.EntityFrameworkCore;
 using PokemonApi.Services.PokemonService;
+using PokemonApi.Services.UrlService;
+using PokemonApi.Services.HttpServices;
+using PokemonApi.Services.PokeSplits;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +15,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddScoped<IPokeService, PokeService>();
+builder.Services.AddScoped<IUrlService, UrlService>();
+builder.Services.AddScoped<IHttpService, HttpService>();
+builder.Services.AddScoped<IPokeSplit, PokeSplit>();
 builder.Services.AddDbContext<PokeContext>(options => 
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("default"));
