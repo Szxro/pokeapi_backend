@@ -24,6 +24,11 @@ builder.Services.AddDbContext<PokeContext>(options =>
 });
 
 var app = builder.Build();
+app.UseCors(m => 
+{
+    m.AllowAnyHeader();
+    m.AllowAnyOrigin();
+});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
