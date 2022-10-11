@@ -13,5 +13,7 @@ namespace PokemonApi.Services.PokemonService
         Task<ServiceResponse<List<PokemonDTO>>> getPokemonDB();
 
         ServiceResponse<List<Pokemon>> getAllPokemon(int limit = 20, int offset = 0);
+
+        Task<ServiceResponse<List<PokemonDTO>>> deletePokemon(string name);
     }
 }

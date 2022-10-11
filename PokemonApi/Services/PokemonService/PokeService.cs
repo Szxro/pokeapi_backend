@@ -120,5 +120,24 @@ namespace PokemonApi.Services.PokemonService
                 return new ServiceResponse<List<Pokemon>> { Success = false, Message = $"{e.Message}" };
             }
         }
+        /*Delete Pokemon by Name*/
+        public async Task<ServiceResponse<List<PokemonDTO>>> deletePokemon(string name)
+        {
+            try
+            {
+                var pokemon = await _context.Pokemons.Where(p => p.Name == name).FirstOrDefaultAsync();
+                if (pokemon == null)
+                    return new ServiceResponse<List<PokemonDTO>>() { Message = "Pokemon Not Found", Success = false };
+                _context.Pokemons.Remove(pokemon);
+                await _context.SaveChangesAsync();
+                return new ServiceResponse<List<PokemonDTO>>() { Data = await _context.Pokemons.Include(x => x.Abilities).Include(x => x.PokeSprite).Include(x => x.Types).Include(x => x.Stats).Select(x => _mapper.Map<PokemonDTO>(x)).ToListAsync() };
+
+            } catch (Exception e)
+            {
+                return new ServiceResponse<List<PokemonDTO>>() { Success = false, Message = $"{e.Message}" };
+            
+            }
+
+        }
     }
 }

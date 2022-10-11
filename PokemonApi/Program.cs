@@ -28,6 +28,7 @@ app.UseCors(m =>
 {
     m.AllowAnyHeader();
     m.AllowAnyOrigin();
+    m.AllowAnyMethod();
 });
 
 // Configure the HTTP request pipeline.

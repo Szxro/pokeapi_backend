@@ -1,6 +1,7 @@
 ﻿using DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using ModelDB;
 using Models;
 using PokemonApi.Services;
@@ -44,6 +45,13 @@ namespace PokemonApi.Controllers
         public ActionResult<ServiceResponse<List<Pokemon>>> getAllPokemons(int limit = 20, int offset = 0) 
         {
             return Ok(_service.getAllPokemon(limit, offset));
+        }
+
+        [HttpDelete("deletePokemon")]
+
+        public async Task<ActionResult<ServiceResponse<List<PokemonDTO>>>> deletePokemon(string name)
+        {
+            return Ok(await _service.deletePokemon(name));
         }
     }
 }
